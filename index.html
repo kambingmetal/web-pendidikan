@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situs Web Pendidikan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --background: 36 39% 88%;
+            --foreground: 36 45% 15%;
+            --primary: 36 45% 70%;
+            --primary-foreground: 36 45% 11%;
+            --secondary: 40 35% 77%;
+            --secondary-foreground: 36 45% 25%;
+            --accent: 36 64% 57%;
+            --accent-foreground: 36 72% 17%;
+            --destructive: 0 84% 37%;
+            --destructive-foreground: 0 0% 98%;
+            --muted: 36 33% 75%;
+            --muted-foreground: 36 45% 25%;
+            --card: 36 46% 82%;
+            --card-foreground: 36 45% 20%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 240 10% 3.9%;
+            --border: 36 45% 60%;
+            --input: 36 45% 60%;
+            --ring: 36 45% 30%;
+            --radius: 0rem;
+        }
+
+        * {
+            border-color: hsl(var(--border));
+        }
+
+        body {
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-family: 'Space Mono', monospace;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25em 0.5em;
+            border: 1px solid hsl(var(--border));
+            border-radius: 0.25rem;
+            color: hsl(var(--accent-foreground));
+            background-color: hsl(var(--accent));
+        }
+
+        .card {
+            background-color: hsl(var(--card));
+            color: hsl(var(--card-foreground));
+            border-radius: 0.375rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border: 1px solid transparent;
+            transition: background-color 0.2s;
+        }
+
+        .button-outline {
+            background-color: transparent;
+            border-color: hsl(var(--primary));
+            color: hsl(var(--primary));
+        }
+
+        .button:hover {
+            background-color: hsl(var(--primary) / 0.9);
+        }
+
+        .button-outline:hover {
+            background-color: hsl(var(--primary) / 0.1);
+        }
+
+        .menu-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            stroke: currentColor;
+        }
+
+        .sheet {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .sheet-content {
+            background-color: white;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 1rem;
+        }
+
+        .sheet-trigger {
+            cursor: pointer;
+        }
+
+        .sheet-trigger:checked ~ .sheet {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex flex-col min-h-screen">
+        <header class="bg-primary text-primary-foreground py-4 px-6 md:px-8 lg:px-10">
+            <div class="container mx-auto flex items-center justify-between">
+                <a href="#" class="text-xl font-bold">Situs Web Pendidikan</a>
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="hover:text-accent">Pelajaran Audio</a>
+                    <a href="#" class="hover:text-accent">Pelajaran Video</a>
+                    <a href="#" class="hover:text-accent">Kursus</a>
+                    <a href="#" class="hover:text-accent">Tentang</a>
+                </nav>
+                <input type="checkbox" id="menu-toggle" class="sheet-trigger hidden" />
+                <label for="menu-toggle" class="md:hidden">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="4" y1="12" x2="20" y2="12" />
+                        <line x1="4" y1="6" x2="20" y2="6" />
+                        <line x1="4" y1="18" x2="20" y2="18" />
+                    </svg>
+                </label>
+                <div class="sheet">
+                    <div class="sheet-content">
+                        <label for="menu-toggle">
+                            <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 6 6 18" />
+                                <path d="m6 6 12 12" />
+                            </svg>
+                        </label>
+                        <nav class="grid gap-4 p-6">
+                            <a href="#" class="hover:text-accent">Pelajaran Audio</a>
+                            <a href="#" class="hover:text-accent">Pelajaran Video</a>
+                            <a href="#" class="hover:text-accent">Kursus</a>
+                            <a href="#" class="hover:text-accent">Tentang</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1">
+            <section class="bg-background py-12 md:py-16 lg:py-20">
+                <div class="container mx-auto px-6 md:px-8 lg:px-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Buka Potensi Anda dengan Sumber Daya Pendidikan Kami</h1>
+                            <p class="text-muted-foreground text-lg mb-6">Jelajahi berbagai pelajaran audio dan video, serta kursus komprehensif, untuk meningkatkan pengetahuan dan keterampilan Anda.</p>
+                            <div class="flex space-x-4">
+                                <button class="button">Mulai Sekarang</button>
+                                <button class="button button-outline">Pelajari Lebih Lanjut</button>
+                            </div>
+                        </div>
+                        <div class="hidden md:block">
+                            <img src="/placeholder.svg" width="600" height="400" alt="Gambar Hero" class="rounded-lg" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-muted py-12 md:py-16 lg:py-20">
+                <div class="container mx-auto px-6 md:px-8 lg:px-10">
+                    <div class="mb-8">
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Pelajaran Audio</h2>
+                        <p class="text-muted-foreground text-lg">Terjun ke dalam koleksi pelajaran audio yang menarik.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="card">
+                            <div class="p-6">
+                                <audio controls class="w-full">
+                                    <source src="/placeholder-audio.mp3" type="audio/mpeg" />
+                                    Browser Anda tidak mendukung elemen audio.
+                                </audio>
+                                <h3 class="text-xl font-bold mt-4">Pelajaran Audio 1</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang pelajaran audio ini.</p>
+                                <span class="badge mt-4">Audio</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <audio controls class="w-full">
+                                    <source src="/placeholder-audio.mp3" type="audio/mpeg" />
+                                    Browser Anda tidak mendukung elemen audio.
+                                </audio>
+                                <h3 class="text-xl font-bold mt-4">Pelajaran Audio 2</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang pelajaran audio ini.</p>
+                                <span class="badge mt-4">Audio</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <audio controls class="w-full">
+                                    <source src="/placeholder-audio.mp3" type="audio/mpeg" />
+                                    Browser Anda tidak mendukung elemen audio.
+                                </audio>
+                                <h3 class="text-xl font-bold mt-4">Pelajaran Audio 3</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang pelajaran audio ini.</p>
+                                <span class="badge mt-4">Audio</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <audio controls class="w-full">
+                                    <source src="/placeholder-audio.mp3" type="audio/mpeg" />
+                                    Browser Anda tidak mendukung elemen audio.
+                                </audio>
+                                <h3 class="text-xl font-bold mt-4">Pelajaran Audio 4</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang pelajaran audio ini.</p>
+                                <span class="badge mt-4">Audio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-muted py-12 md:py-16 lg:py-20">
+                <div class="container mx-auto px-6 md:px-8 lg:px-10">
+                    <div class="mb-8">
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Pelajaran Video</h2>
+                        <p class="text-muted-foreground text-lg">Tingkatkan pemahaman Anda dengan video pembelajaran kami.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="card">
+                            <div class="p-6">
+                                <video controls class="w-full">
+                                    <source src="/placeholder-video.mp4" type="video/mp4" />
+                                    Browser Anda tidak mendukung elemen video.
+                                </video>
+                                <h3 class="text-xl font-bold mt-4">Pelajaran Video 1</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang pelajaran video ini.</p>
+                                <span class="badge mt-4">Video</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <video controls class="w-full">
+                                    <source src="/placeholder-video.mp4" type="video/mp4" />
+                                    Browser Anda tidak mendukung elemen video.
+                                </video>
+                                <h3 class="text-xl font-bold mt-4">Pelajaran Video 2</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang pelajaran video ini.</p>
+                                <span class="badge mt-4">Video</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <video controls class="w-full">
+                                    <source src="/placeholder-video.mp4" type="video/mp4" />
+                                    Browser Anda tidak mendukung elemen video.
+                                </video>
+                                <h3 class="text-xl font-bold mt-4">Pelajaran Video 3</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang pelajaran video ini.</p>
+                                <span class="badge mt-4">Video</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <video controls class="w-full">
+                                    <source src="/placeholder-video.mp4" type="video/mp4" />
+                                    Browser Anda tidak mendukung elemen video.
+                                </video>
+                                <h3 class="text-xl font-bold mt-4">Pelajaran Video 4</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang pelajaran video ini.</p>
+                                <span class="badge mt-4">Video</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-muted py-12 md:py-16 lg:py-20">
+                <div class="container mx-auto px-6 md:px-8 lg:px-10">
+                    <div class="mb-8">
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Kursus</h2>
+                        <p class="text-muted-foreground text-lg">Daftar ke kursus kami untuk pembelajaran yang mendalam.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold">Kursus 1</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang kursus ini.</p>
+                                <a href="#" class="text-primary mt-4 inline-block">Pelajari Lebih Lanjut</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold">Kursus 2</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang kursus ini.</p>
+                                <a href="#" class="text-primary mt-4 inline-block">Pelajari Lebih Lanjut</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold">Kursus 3</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang kursus ini.</p>
+                                <a href="#" class="text-primary mt-4 inline-block">Pelajari Lebih Lanjut</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold">Kursus 4</h3>
+                                <p class="text-muted-foreground mt-2">Deskripsi singkat tentang kursus ini.</p>
+                                <a href="#" class="text-primary mt-4 inline-block">Pelajari Lebih Lanjut</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-secondary text-secondary-foreground py-8">
+            <div class="container mx-auto px-6 md:px-8 lg:px-10 text-center">
+                <p>&copy; 2024 Situs Web Pendidikan. Semua Hak Cipta Dilindungi.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
